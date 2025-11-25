@@ -1,0 +1,281 @@
+/* App.css — полностью исправленная версия */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Шапка */
+.header {
+  width: 100%;
+  margin-bottom: 0;
+  border-bottom: 2px solid #eee;
+}
+
+.header-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Навигационное меню */
+.navbar {
+  background: #343a40;
+  padding: 6px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  overflow-x: hidden;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 12px;
+  flex-wrap: wrap;
+}
+
+.navbar li {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.navbar a,
+.navbar .nav-button {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: normal;
+  border-radius: 4px;
+  transition: background 0.2s;
+  white-space: normal;
+  line-height: 1.3;
+  min-width: 80px;
+}
+
+.navbar a:hover,
+.navbar .nav-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Выпадающее меню — теперь фиксированное */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Используем position: fixed — чтобы не обрезалось */
+.dropdown-menu {
+  display: none;
+  position: fixed;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+  z-index: 10000; /* выше всех */
+  padding: 0;
+  font-size: 0.85rem;
+  transform: translateZ(0);
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Динамическое позиционирование через JS (в React) */
+/* Мы добавим класс "show" и рассчитаем позицию */
+.dropdown-menu.show {
+  position: fixed;
+  top: calc(var(--button-top) + var(--button-height));
+  left: var(--button-left);
+  width: var(--button-width);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+  background: #f5f5f5;
+}
+
+/* Левая панель */
+.sidebar {
+  width: 260px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar li:last-child {
+  border-bottom: none;
+}
+
+.sidebar a,
+.sidebar .dropdown-btn {
+  display: block;
+  color: #555;
+  text-decoration: none;
+  padding: 6px 12px;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.sidebar a:hover,
+.sidebar .dropdown-btn:hover {
+  color: #2c3e50;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.sidebar .dropdown-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 6px 12px;
+}
+
+.sidebar .arrow {
+  font-size: 0.7rem;
+  color: #777;
+}
+
+/* Основной контент */
+.main-layout {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Сетка продуктов */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-card h4 {
+  padding: 12px;
+  font-size: 1rem;
+  text-align: center;
+  color: #333;
+  margin: 0;
+}
+
+/* Подвал */
+.footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  color: #7f8c8d;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
